@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body class="bg-black">  
@@ -62,7 +63,7 @@
         
           <!-- Left item -->
           <div class=" flex flex-col mb-32 space-y-12 md:w-1/2">
-            <h1
+            <h1 
               class="max-w-md text-4xl font-bold text-center text-gray-200 md:text-5xl md:text-left "
             >
             EXPOSIÇÃO DE 
@@ -70,7 +71,7 @@
             
             </h1>
             
-            <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
+            <p class="max-w-sm text-center text-darkGrayishBlue md:text-left"  >
                 Bem-vindo ao nosso site de eventos de cybersegurança e marketing! 
                 Explore nossos recursos para aprender e crescer em tecnologia e segurança digital.
                  Estamos felizes por tê-lo aqui!
@@ -116,7 +117,7 @@
         <div class="h-full flex flex-col items-center text-center">
           <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="../static/img/palestrantes/milena.jpeg">
           <div class="w-full">
-            <h2 class="title-font font-medium text-lg text-gray-50">Milena Oliveira</h2>
+            <h2 class="title-font font-medium text-lg text-gray-50  ">Milena Oliveira</h2>
             <p class="mb-4 text-gray-200">Especialista em Ética e Privacidade de Dados na web </p>
             <span class="inline-flex">
               <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
@@ -304,7 +305,7 @@ function sliderButton1(){
   
 
 <!--Cards de compra-->
-<section class="text-gray-600 body-font overflow-hidden pt-32 ">
+<section class="text-gray-600 body-font overflow-hidden pt-32">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
       <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-100">INGRESSOS</h1>
@@ -592,4 +593,10 @@ function sliderButton1(){
       </div>
     </div>
   </footer>
+  <script>
+    AOS.init({
+      once:true
+    });
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </body>

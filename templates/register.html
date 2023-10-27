@@ -26,7 +26,7 @@
 </div>
 
 <div class="w-full h-screen flex items-center justify-center">
-    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{url_for('register')}}" method="post">
         <div class="text-3xl"> 
             <h1>Registre-se</h1>
         </div>
@@ -53,7 +53,7 @@
         <p class="text-gray-800 text-xs italic">Escolha uma senha segura</p>
       </div>
       <div class="flex items-center justify-between">
-        <button class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        <button class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
           Registrar
         </button>
         <a class="inline-block align-baseline font-bold text-sm text-teal-600 hover:text-teal-800" href="{{url_for('login') }}">
