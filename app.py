@@ -28,7 +28,11 @@ class Admin(db.Model, UserMixin):
     __tablename__ = "admin"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), nullable=False)
-    password = db.Column(db.String(50), nullable=False)
+    nome = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(50), nullable=False)  # Make sure this line is present
+    funcao = db.Column(db.String(50), nullable=False)
+    telefone = db.Column(db.String(50), nullable=False)
+    senhaAdm = db.Column(db.String(50), nullable=False)
 
 admin.add_view(ModelView(User, db.session))
 
@@ -80,7 +84,7 @@ def register():
             db.session.commit()
             message = 'Cadastro feito com sucesso'
             return redirect(url_for('login'))
-    return render_template('register.html')
+    return render_template('register.html', message = message)
 
 ##rota de login
 @app.route("/login", methods=['POST', 'GET'])
@@ -90,24 +94,26 @@ def login():
         email = request.form.get('email')
         password = request.form.get('senha')
         user = User.query.filter_by(email=email, password=password).first()
-        admin = Admin.query.filter_by(email = email, password = password).first()
+        admin_user = Admin.query.filter_by(email=email, password=password).first()  # Rename admin to admin_user
         
         if user:
-            login_user(user) #quando é autenticado, o flask cria uma sessao de usuario adequeda, mantendo o usuario autenticado
+            login_user(user)
             return redirect(url_for('system'))
-        if admin:
-            login_user(admin)
+        if admin_user:
+            login_user(admin_user)
             return redirect(url_for('admin'))
         else:
             message = "Usuário não encontrado, tente novamente"
             return redirect(url_for('index'))
-    return render_template('login.html')
-    ##//TODO: TERMINAR VERIFICAÇÃO DO LOGIN DE USUÁRIO
+    return render_template('login.html', message=message)
+
+   
 ##rota do adm
 @app.route('/admin')
 def admin():
     return render_template('systemAdm/systemAdmHome.html')
-    ##//TODO: COMEÇAR ABA DE ADMIN 
+
+
 ##Acesso a sistema do usuário / venda de ingresso
 @app.route('/system')
 @login_required
@@ -144,8 +150,99 @@ def systemBuy():
         db.session.commit()
     return render_template('system/systemBuy.html')
 
-##//TODO:desenvolver o formuário da compra do ingresso 
-##//TODO:desenvolver aba de confirmacao de compra 
+
+##<---------------------------------->
+
+@app.route('/homeadm')
+def homeadm():
+    return render_template('systemAdm/systemAdmHome.html')
+
+@app.route('/systemadminsc')
+def systemadminsc():
+    users = User.query.all()
+    return render_template('systemAdm/systemadminsc.html', users = users)
+
+@app.route('/deleteInscricao/<int:id>') ##deletar rota na rota -- usar para fazer as outras
+def deleteInscricao(id):
+    inscricao = User.query.get(id)
+    
+    if inscricao:
+        db.session.delete(inscricao)
+        db.session.commit()
+
+    return redirect(url_for('systemadminsc'))
+
+##<-------------------------------------------->
+
+
+
+
+@app.route('/systemadminingressos')
+def systemadminingressos():
+    buy = Buy.query.all()
+    return render_template('systemAdm/systemadminingressos.html', buy = buy)
+
+@app.route('/deleteIngresso/<int:id>') ##deletar rota na rota -- usar para fazer as outras
+def deleteIngresso(id):
+    ingresso = Buy.query.get(id)
+    
+    if ingresso:
+        db.session.delete(ingresso)
+        db.session.commit()
+
+    return redirect(url_for('systemadminingressos'))
+
+
+##<------------------------------------------>
+@app.route('/systemadmcompras')
+def systemadmcompras():
+    return render_template('systemAdm/systemadmcompras.html')
+
+##<------------------------------------------>
+
+@app.route('/systemadms')
+def systemadms():
+    return render_template('systemAdm/systemadms.html')
+
+##forms de adicão de adm / rota
+@app.route('/addAdmin', methods = ['POST','GET'])
+def addAdmin():
+    message = ''
+    passwordModel = 'testedemodelo'
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        email = request.form.get('email')
+        password = request.form.get('senha')
+        funcao = request.form.get('funcao')
+        telefone = request.form.get('telefone')
+        senhaAdm = request.form.get('senhaAdm')
+        if senhaAdm == passwordModel:
+            adminAddBd = Admin(nome = nome, email = email, password = password, funcao = funcao,  telefone = telefone, senhaAdm = senhaAdm)
+            db.session.add(adminAddBd)
+            db.session.commit()
+            message = 'usuário adicionado com sucesso'
+            return redirect('systemadms')
+        else:
+            message = 'senha modelo errada, redirecionando, tente novamente'
+            return redirect(url_for('systemadms'))
+    return render_template('systemAdm/formsAdm/forms_add_admins.html', message = message)
+
+
+
+@app.route('/systemadmemployer')
+def systemadmemployer():
+    return render_template('systemAdm/systemadmemployer.html')
+
+
 if __name__ == "__main__":
     app.run()
     login_manager.init_app(app)
+
+
+##//TODO:DESENVOLVER TODOS OS CRUDS 
+##//TODO:Desenvolver crud de empregados
+##//TODO:TERMINAR VERIFICAÇÃO DO LOGIN DE USUÁRIO 
+##//TODO:Desenvolver perfil de usuário
+##//TODO:desenvolver aba de confirmacao de compra 
+##//TODO:Desenvolver algoritmo random identificador 
+##//TODO:Desenvolver sistema de email
