@@ -14,80 +14,66 @@
     <span></span>
 </div>
 <div class="p-4 sm:ml-64 h-full flex items-center justify-center">
-    <form class="w-full max-w-lg" method="post" >
-        <div class=" text-white text-center text-3xl">
-            <h1>Comprar ingressos</h1>
-        </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
-          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-first-name">
-              Nome
-            </label>
-            <input name="nome" class="appearance-none block w-full bg-white  border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="nome" type="text">
-          </div>
-          <div class="w-full md:w-1/2 px-3">
-            <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-last-name">
-              Endereço
-            </label>
-            <input name="endereco" class="appearance-none block w-full bg-white  border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="endereco" type="text">
-          </div>
-        </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
-          <div class="w-full px-3">
-            <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-password">
-              telefone
-            </label>
-            <input name="telefone" class="appearance-none block w-full bg-white  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="telefone"  placeholder="0000000-0000">
-          </div>
-        </div>
-        <!---->
-
-        <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-first-name">
-                Cidade
-              </label>
-              <input name="cidade" class="appearance-none block w-full bg-white  border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text">
-            </div>
-            <div class="w-full md:w-1/2 px-3">
-              <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-last-name">
-                Estado
-              </label>
-              <input name="estado" class="appearance-none block w-full bg-white  border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="estado" type="text">
-            </div>
-          </div>
-
-          <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full px-3">
-              <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-password">
-                Email
-              </label>
-              <input name="email" class="appearance-none block w-full bg-white  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email">
-              <p class="text-gray-600 text-xs italic">Coloque o seu melhor email</p>
-            </div>
-          </div>
-        <div class="flex flex-wrap -mx-3 mb-2">
-          
-          <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-state">
-              Ingresso
-            </label>
-            <div class="relative">
-              <select name="selecao" class="block appearance-none w-full bg-white border border-gray-200 text-black py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="select">
-                <option value="12.99">BASIC-$12,99</option>
-                <option value="29.99" >PRO-$29,99</option>
-                <option value="49.99" >MASTER-$49,99</option>
-                <option value="100" >VIP-$100</option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+  <div class="w-full max-w-lg mx-auto p-8">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-lg font-medium mb-6">Método de pagamento</h2>
+        <p  class="mb-6" >Coloque suas informacoes para fazer a cobranca </p>
+        <form method="post">
+            <div class="grid grid-cols-2 gap-6">
+                <div class="col-span-2 sm:col-span-1">
+                    <label for="card-number" class="block text-sm font-medium text-gray-700 mb-2">Número do cartao</label>
+                    <input type="text" name="number_card" id="card-number" placeholder="0000 0000 0000 0000" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" required >
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                    <label for="expiration-date" class="block text-sm font-medium text-gray-700 mb-2">Expira-em</label>
+                    <input type="text" name="date_expires" id="expiration-date" placeholder="MM / YY" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" required >
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                    <label for="cvv" class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                    <input type="text" name="cvv" id="cvv" placeholder="000" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" required >
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                    <label for="card-holder" class="block text-sm font-medium text-gray-700 mb-2">Nome do proprietário</label>
+                    <input type="text" name="name_of_propriety" id="card-holder" placeholder="Nome" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" required >
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                  <label for="card-holder" class="block text-sm font-medium text-gray-700 mb-2">Email do proprietário</label>
+                  <input type="text" name="email" id="card-holder" placeholder="Email" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500" required >
               </div>
+                <div>
+                  <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="grid-state">
+                    Ingresso
+                  </label>
+                  <div class="relative">
+                    <select name="selecao" class="block appearance-none w-full bg-white border border-gray-200 text-black py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="select" required>
+                      <option value="12.99">BASIC-$12,99</option>
+                      <option value="29.99" >PRO-$29,99</option>
+                      <option value="49.99" >MASTER-$49,99</option>
+                      <option value="100" >VIP-$100</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class=" bg-white p-8 rounded-md shadow-md">
+                  <label class="flex items-center">
+                      <input type="checkbox" class="form-checkbox text-blue-500" required >
+                      <span class="ml-2 text-sm">Eu aceito os <a href="#" class="text-blue-500" >Termos e Condições</a></span>
+                  </label>
+              </div>
+              <div class=" bg-white p-8 rounded-md shadow-md">
+                <label class="flex items-center">
+                    <span class="ml-2 text-sm">Em breve novos métodos de pagamento</span>
+                </label>
             </div>
-          </div>
-        </div>
-        <div class="pt-6">        
-          <button class="transition font-bold delay-150 duration-300 ease-in-out p-3 px-6 pt-2 border-white text-white bg-teal-700 hover:bg-teal-800 hover:motion-safe:animate-pulse rounded-md" > Comprar ingresso</button>
-        </div>
-      </form>
+            </div>
+            <div class="mt-8">
+                <button type="submit" class="w-full bg-black hover:bg-gray-800 text-white font-medium py-3 rounded-lg focus:outline-none">Comprar</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
  </div>
 {% endblock %}

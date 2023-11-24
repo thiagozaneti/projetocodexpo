@@ -36,16 +36,36 @@ class Admin(db.Model, UserMixin):
 
 admin.add_view(ModelView(User, db.session))
 
+
+
+
 class Buy(db.Model, UserMixin):
     __tablename__ = 'buy'
     id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(200), nullable=False)
-    endereco = db.Column(db.String(200), nullable=False)
-    telefone = db.Column(db.String(200), nullable=False)
-    cidade = db.Column(db.String(200), nullable=False)
-    estado = db.Column(db.String(200), nullable=False)
+    number_card = db.Column(db.String(200), nullable=False)
+    date_expires = db.Column(db.String(200), nullable=False)
+    cvv = db.Column(db.String(200), nullable=False)
+    name_of_propriety = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(200), nullable=False)
-    selecao = db.Column(db.String(100), nullable=False)
+    selecao = db.Column(db.String(200), nullable=False)
+
+class Empregados(db.model, UserMixin):
+    __tablename__ = 'empregados'
+    id = db.column(db.integer, primary_key = True)
+    nome = db.Column(db.String(50), nullable=False)
+    selecao_empregados = db.Column(db.String(200), nullable=False)
+    indicacao = db.Column(db.String(200), nullable=False)
+    salario = db.Column(db.String(10), nullable=False)
+    idade = db.Column(db.String(10), nullable=False)
+    telefone = db.Column(db.String(10), nullable=False)
+    email = db.Column(db.String(200), nullable=False)
+    tipo_de_servico = db.Column(db.String(200), nullable=False)
+    inicio_trabalho = db.Column(db.String(10), nullable=False)
+    fim_trabalho = db.Column(db.String(10), nullable=False)
+    senha = db.Column(db.String(10), nullable=False)
+    identificador = db.Column(db.String(5), nullable=False)
+    descricao = db.Column(db.String(500), nullable=False)
+
 
 @login_manager.user_loader    #A função load_user é usada pelo Flask-Login para carregar um objeto de usuário com base no user_id armazenado na sessão do usuário. Isso permite que o Flask-Login mantenha o controle da sessão do usuário.
 def load_user(user_id):
@@ -123,29 +143,29 @@ def system():
     return render_template('system/system.html')
 
 ##Acesso ao sistema na secao de usuario de eventos
-@app.route('/systemEvent')
+@app.route('/system_Event')
 @login_required
 def systemNotices():
     return render_template('system/systemEvent.html')
 
 ##Acesso ao sistema na secao de usuario de shop
-@app.route('/systemShop')
+@app.route('/system_Shop')
 @login_required
 def systemShop():
     return render_template('system/systemShop.html')
 
-@app.route('/systemBuy', methods = ['POST','GET'])
+@app.route('/system_Buy', methods = ['POST','GET'])
 @login_required
 def systemBuy():
     if request.method == 'POST':
-        nome = request.form.get('nome')
-        endereco = request.form.get('endereco')
-        telefone = request.form.get('telefone')
-        cidade = request.form.get('cidade')
-        estado = request.form.get('estado')
+        number_card = request.form.get('number_card')
+        date_expires = request.form.get('date_expires')
+        cvv = request.form.get('cvv')
+        name_of_propriety = request.form.get('name_of_propriety')
         email = request.form.get('email')
-        selecao = request.form.get('selecao')
-        new_buy = Buy(nome = nome, endereco = endereco, telefone = telefone, cidade = cidade, estado = estado, email = email, selecao = selecao)
+
+
+        new_buy = Buy(number_card = number_card, date_expires = date_expires, cvv = cvv, name_of_propriety = name_of_propriety, email = email)
         db.session.add(new_buy)
         db.session.commit()
     return render_template('system/systemBuy.html')
@@ -157,12 +177,12 @@ def systemBuy():
 def homeadm():
     return render_template('systemAdm/systemAdmHome.html')
 
-@app.route('/systemadminsc')
+@app.route('/system_adm_insc')
 def systemadminsc():
     users = User.query.all()
     return render_template('systemAdm/systemadminsc.html', users = users)
 
-@app.route('/deleteInscricao/<int:id>') ##deletar rota na rota -- usar para fazer as outras
+@app.route('/delete_inscricao/<int:id>') ##deletar rota na rota -- usar para fazer as outras
 def deleteInscricao(id):
     inscricao = User.query.get(id)
     
@@ -177,12 +197,12 @@ def deleteInscricao(id):
 
 
 
-@app.route('/systemadminingressos')
+@app.route('/system_admin_ingressos')
 def systemadminingressos():
     buy = Buy.query.all()
     return render_template('systemAdm/systemadminingressos.html', buy = buy)
 
-@app.route('/deleteIngresso/<int:id>') ##deletar rota na rota -- usar para fazer as outras
+@app.route('/delete_ingresso/<int:id>') ##deletar rota na rota -- usar para fazer as outras
 def deleteIngresso(id):
     ingresso = Buy.query.get(id)
     
@@ -194,18 +214,18 @@ def deleteIngresso(id):
 
 
 ##<------------------------------------------>
-@app.route('/systemadmcompras')
+@app.route('/system_adm_compras')
 def systemadmcompras():
     return render_template('systemAdm/systemadmcompras.html')
 
 ##<------------------------------------------>
 
-@app.route('/systemadms')
+@app.route('/system_adms')
 def systemadms():
     return render_template('systemAdm/systemadms.html')
 
 ##forms de adicão de adm / rota
-@app.route('/addAdmin', methods = ['POST','GET'])
+@app.route('/add_admin', methods = ['POST','GET'])
 def addAdmin():
     message = ''
     passwordModel = 'testedemodelo'
@@ -229,10 +249,33 @@ def addAdmin():
 
 
 
-@app.route('/systemadmemployer')
+@app.route('/system_adm_employer')
 def systemadmemployer():
     return render_template('systemAdm/systemadmemployer.html')
 
+@app.route('/system_add_employer', methods = ['POST', 'GET'] )
+def system_add_employer():
+    message = ''
+    if request.method == 'POST':
+        nome = request.form.get('')
+        selecao_empregados = request.form.get('selecao_empregados')
+        indicacao = request.form.get('indicacao')
+        salario = request.form.get('salario')
+        idade = request.form.get('idade')
+        telefone = request.form.get('telefone')
+        email = request.form.get('email')
+        tipo_de_servico = request.form.get('tipo_de_servico')
+        inicio_trabalho = request.form.get('inicio_trabalho')
+        fim_trabalho = request.form.get('fim_trabalho')
+        senha = request.form.get('senha')
+        identificador = request.form.get('identificador')
+        descricao = request.form.get('descricao')
+        add_empregado = Empregados(nome = nome, selecao_empregados = selecao_empregados, indicacao = indicacao, salario = salario, idade = idade, telefone = telefone, email = email, tipo_de_servico = tipo_de_servico, inicio_trabalho = inicio_trabalho, fim_trabalho = fim_trabalhosenha = senha, identificador = identificador, descricao = descricao)
+        db.session.add(add_empregado)
+        db.session.commit()
+        message = 'empregado adicionado com sucesso'
+        return redirect(url_for('systemadmemployer'))
+    return render_template('systemAdm/formsAdm/forms_add_employers.html')
 
 if __name__ == "__main__":
     app.run()
@@ -246,3 +289,4 @@ if __name__ == "__main__":
 ##//TODO:desenvolver aba de confirmacao de compra 
 ##//TODO:Desenvolver algoritmo random identificador 
 ##//TODO:Desenvolver sistema de email
+
