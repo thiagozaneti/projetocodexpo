@@ -23,35 +23,11 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
-
-class Admin(db.Model, UserMixin):
-    __tablename__ = "admin"
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), nullable=False)
-    nome = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(50), nullable=False)  # Make sure this line is present
-    funcao = db.Column(db.String(50), nullable=False)
-    telefone = db.Column(db.String(50), nullable=False)
-    senhaAdm = db.Column(db.String(50), nullable=False)
-
-admin.add_view(ModelView(User, db.session))
-
-
-
-
-class Buy(db.Model, UserMixin):
-    __tablename__ = 'buy'
-    id = db.Column(db.Integer, primary_key=True)
-    number_card = db.Column(db.String(200), nullable=False)
-    date_expires = db.Column(db.String(200), nullable=False)
-    cvv = db.Column(db.String(200), nullable=False)
-    name_of_propriety = db.Column(db.String(200), nullable=False)
-    email = db.Column(db.String(200), nullable=False)
-    selecao = db.Column(db.String(200), nullable=False)
-
-class Empregados(db.model, UserMixin):
+    
+    
+class Empregados(db.Model, UserMixin): 
     __tablename__ = 'empregados'
-    id = db.column(db.integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50), nullable=False)
     selecao_empregados = db.Column(db.String(200), nullable=False)
     indicacao = db.Column(db.String(200), nullable=False)
@@ -65,6 +41,31 @@ class Empregados(db.model, UserMixin):
     senha = db.Column(db.String(10), nullable=False)
     identificador = db.Column(db.String(5), nullable=False)
     descricao = db.Column(db.String(500), nullable=False)
+
+class Admin(db.Model, UserMixin):
+    __tablename__ = "admin"
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), nullable=False)
+    nome = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(50), nullable=False)  # Make sure this line is present
+    funcao = db.Column(db.String(50), nullable=False)
+    senhaAdm = db.Column(db.String(50), nullable=False)
+
+admin.add_view(ModelView(User, db.session))
+
+
+
+
+class Buy(db.Model, UserMixin):
+    __tablename__ = 'info_users_buy'
+    id = db.Column(db.Integer, primary_key=True)
+    number_card = db.Column(db.String(200), nullable=False)
+    date_expires = db.Column(db.String(200), nullable=False)
+    cvv = db.Column(db.String(200), nullable=False)
+    name_of_propriety = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(200), nullable=False)
+    selecao = db.Column(db.String(200), nullable=False)
+
 
 
 @login_manager.user_loader    #A função load_user é usada pelo Flask-Login para carregar um objeto de usuário com base no user_id armazenado na sessão do usuário. Isso permite que o Flask-Login mantenha o controle da sessão do usuário.
@@ -154,6 +155,11 @@ def systemNotices():
 def systemShop():
     return render_template('system/systemShop.html')
 
+@app.route('/system_profile')
+@login_required
+def system_profile():
+    return render_template('system/systemUser.html')
+
 @app.route('/system_Buy', methods = ['POST','GET'])
 @login_required
 def systemBuy():
@@ -174,8 +180,11 @@ def systemBuy():
 ##<---------------------------------->
 
 @app.route('/homeadm')
+@login_required
 def homeadm():
-    return render_template('systemAdm/systemAdmHome.html')
+    username = current_user.username
+    email = current_user.email
+    return render_template('systemAdm/systemAdmHome.html', username=username, email=email)
 
 @app.route('/system_adm_insc')
 def systemadminsc():
@@ -222,26 +231,31 @@ def systemadmcompras():
 
 @app.route('/system_adms')
 def systemadms():
-    return render_template('systemAdm/systemadms.html')
+    nome = request.args.get('nome')
+    email = request.args.get('email')
+    password = request.args.get('senha')
+    funcao = request.args.get('funcaoadm')
+    senhaAdm = request.args.get('senhaadm')
+    lista_admin_add = Admin.query.filter_by(nome=nome, email=email, password=password, funcao=funcao, senhaAdm=senhaAdm).all()
+    return render_template('systemAdm/systemadms.html', lista_admin_add = lista_admin_add)
 
 ##forms de adicão de adm / rota
 @app.route('/add_admin', methods = ['POST','GET'])
 def addAdmin():
     message = ''
-    passwordModel = 'testedemodelo'
+    passwordModel = 'admin'
     if request.method == 'POST':
         nome = request.form.get('nome')
         email = request.form.get('email')
         password = request.form.get('senha')
-        funcao = request.form.get('funcao')
-        telefone = request.form.get('telefone')
-        senhaAdm = request.form.get('senhaAdm')
+        funcao = request.form.get('funcaoadm')
+        senhaAdm = request.form.get('senhaadm')
         if senhaAdm == passwordModel:
-            adminAddBd = Admin(nome = nome, email = email, password = password, funcao = funcao,  telefone = telefone, senhaAdm = senhaAdm)
+            adminAddBd = Admin(nome = nome, email = email, password = password, funcao = funcao, senhaAdm = senhaAdm)
             db.session.add(adminAddBd)
             db.session.commit()
             message = 'usuário adicionado com sucesso'
-            return redirect('systemadms')
+            return redirect(url_for('systemadms', nome=nome, email = email, password = password, funcao = funcao, senhaAdm = senhaAdm))
         else:
             message = 'senha modelo errada, redirecionando, tente novamente'
             return redirect(url_for('systemadms'))
@@ -256,37 +270,15 @@ def systemadmemployer():
 @app.route('/system_add_employer', methods = ['POST', 'GET'] )
 def system_add_employer():
     message = ''
-    if request.method == 'POST':
-        nome = request.form.get('')
-        selecao_empregados = request.form.get('selecao_empregados')
-        indicacao = request.form.get('indicacao')
-        salario = request.form.get('salario')
-        idade = request.form.get('idade')
-        telefone = request.form.get('telefone')
-        email = request.form.get('email')
-        tipo_de_servico = request.form.get('tipo_de_servico')
-        inicio_trabalho = request.form.get('inicio_trabalho')
-        fim_trabalho = request.form.get('fim_trabalho')
-        senha = request.form.get('senha')
-        identificador = request.form.get('identificador')
-        descricao = request.form.get('descricao')
-        add_empregado = Empregados(nome = nome, selecao_empregados = selecao_empregados, indicacao = indicacao, salario = salario, idade = idade, telefone = telefone, email = email, tipo_de_servico = tipo_de_servico, inicio_trabalho = inicio_trabalho, fim_trabalho = fim_trabalhosenha = senha, identificador = identificador, descricao = descricao)
-        db.session.add(add_empregado)
-        db.session.commit()
-        message = 'empregado adicionado com sucesso'
-        return redirect(url_for('systemadmemployer'))
     return render_template('systemAdm/formsAdm/forms_add_employers.html')
 
 if __name__ == "__main__":
     app.run()
     login_manager.init_app(app)
 
-
 ##//TODO:DESENVOLVER TODOS OS CRUDS 
 ##//TODO:Desenvolver crud de empregados
 ##//TODO:TERMINAR VERIFICAÇÃO DO LOGIN DE USUÁRIO 
-##//TODO:Desenvolver perfil de usuário
-##//TODO:desenvolver aba de confirmacao de compra 
 ##//TODO:Desenvolver algoritmo random identificador 
 ##//TODO:Desenvolver sistema de email
 

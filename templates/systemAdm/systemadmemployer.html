@@ -4,7 +4,7 @@
 <div class="p-4 sm:ml-64" >
     <div class="container max-w-7xl mx-auto mt-8" >
     <div class="mb-4">
-        <h1 class=" text-4xl decoration-gray-400">Empregados</h1>
+        <h1 class=" text-4xl decoration-gray-400">Colaboradores</h1>
         <div class="flex pt-10 ">
           <a href="{{url_for('system_add_employer')}}" class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600" > <i class="uil uil-plus"></i> Adicionar Empregado</a>
         </div>
@@ -39,24 +39,24 @@
                       Acao</th>
                   </tr>
                 </thead>
-               {% for Buy in buy %}
+               {% for Empregados in empregados %}
                 <tbody class="bg-white">
                   <tr>
                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                       <div class="flex items-center">
-                        {{Buy.id}}
+                        {{Empregados.id}}
                       </div>
       
                     </td>
       
                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                       <div class="text-sm leading-5 text-gray-900">
-                          {{Buy.number_card}}
+                          {{Empregados}}
                       </div>
                     </td>
       
                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <p>{{Buy.date_expires}}</p>
+                      <p>{{Empregados}}</p>
                     </td>
       
                     <td class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">

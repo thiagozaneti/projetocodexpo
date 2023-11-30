@@ -25,6 +25,9 @@
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                   Email</th>
+                  <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                  Senha</th>
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                   função</th>
@@ -32,7 +35,7 @@
                   Ação</th>
               </tr>
             </thead>
-            {% for Admin in adminAddBd %}
+            {% for Admin in lista_admin_add %}
             <tbody class="bg-white">
               <tr>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -52,16 +55,12 @@
                 </td>
   
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <p>{{Admin.email}}</p>
+                  <p>{{Admin.password}}</p>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <p>{{Admin.email}}</p>
+                  <p>{{Admin.funcao}}</p>
                 </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <p>{{Admin.email}}</p>
-                </td>
-                
-  
+        
                 <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"

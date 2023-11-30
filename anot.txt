@@ -1,0 +1,48 @@
+class Empregados(db.model, UserMixin):
+    __tablename__ = 'empregados'
+    id = db.column(db.integer, primary_key = True)
+    nome = db.Column(db.String(50), nullable=False)
+    selecao_empregados = db.Column(db.String(200), nullable=False)
+    indicacao = db.Column(db.String(200), nullable=False)
+    salario = db.Column(db.String(10), nullable=False)
+    idade = db.Column(db.String(10), nullable=False)
+    telefone = db.Column(db.String(10), nullable=False)
+    email = db.Column(db.String(200), nullable=False)
+    tipo_de_servico = db.Column(db.String(200), nullable=False)
+    inicio_trabalho = db.Column(db.String(10), nullable=False)
+    fim_trabalho = db.Column(db.String(10), nullable=False)
+    senha = db.Column(db.String(10), nullable=False)
+    identificador = db.Column(db.String(5), nullable=False)
+    descricao = db.Column(db.String(500), nullable=False)
+
+
+message = ''
+    if request.method == 'POST':
+        nome = request.form.get('')
+        selecao_empregados = request.form.get('selecao_empregados')
+        indicacao = request.form.get('indicacao')
+        salario = request.form.get('salario')
+        idade = request.form.get('idade')
+        telefone = request.form.get('telefone')
+        email = request.form.get('email')
+        tipo_de_servico = request.form.get('tipo_de_servico')
+        inicio_trabalho = request.form.get('inicio_trabalho')
+        fim_trabalho = request.form.get('fim_trabalho')
+        senha = request.form.get('senha')
+        identificador = request.form.get('identificador')
+        descricao = request.form.get('descricao')
+        add_empregado = Empregados(nome = nome, selecao_empregados = selecao_empregados, indicacao = indicacao, salario = salario, idade = idade, telefone = telefone, email = email, tipo_de_servico = tipo_de_servico, inicio_trabalho = inicio_trabalho, fim_trabalho = fim_trabalhosenha = senha, identificador = identificador, descricao = descricao)
+        db.session.add(add_empregado)
+        db.session.commit()
+        message = 'empregado adicionado com sucesso'
+        return redirect(url_for('systemadmemployer'))
+
+
+        class Admin(db.Model, UserMixin):
+    __tablename__ = "admin"
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), nullable=False)
+    nome = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(50), nullable=False)  # Make sure this line is present
+    funcao = db.Column(db.String(50), nullable=False)
+    senhaAdm = db.Column(db.String(50), nullable=False)
