@@ -3,6 +3,8 @@ from flask_admin.contrib.sqla import ModelView
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_login import LoginManager, login_user, current_user, UserMixin, login_required, logout_user
+from flask_mail import Mail
+
 
 app = Flask(__name__)
 
@@ -231,13 +233,8 @@ def systemadmcompras():
 
 @app.route('/system_adms')
 def systemadms():
-    nome = request.args.get('nome')
-    email = request.args.get('email')
-    password = request.args.get('senha')
-    funcao = request.args.get('funcaoadm')
-    senhaAdm = request.args.get('senhaadm')
-    lista_admin_add = Admin.query.filter_by(nome=nome, email=email, password=password, funcao=funcao, senhaAdm=senhaAdm).all()
-    return render_template('systemAdm/systemadms.html', lista_admin_add = lista_admin_add)
+   lista = Admin.query.all()
+   return render_template('systemAdm/systemadms.html', lista = lista )
 
 ##forms de adicão de adm / rota
 @app.route('/add_admin', methods = ['POST','GET'])
@@ -265,12 +262,44 @@ def addAdmin():
 
 @app.route('/system_adm_employer')
 def systemadmemployer():
-    return render_template('systemAdm/systemadmemployer.html')
+    empregados = Empregados.query.all()
+    return render_template('systemAdm/systemadmemployer.html', empregados = empregados)
 
 @app.route('/system_add_employer', methods = ['POST', 'GET'] )
 def system_add_employer():
     message = ''
+    if request.method == 'POST':
+        message = ''
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        selecao_empregados = request.form.get('selecao_empregados')
+        indicacao = request.form.get('indicacao')
+        salario = request.form.get('salario')
+        idade = request.form.get('idade')
+        telefone = request.form.get('telefone')
+        email = request.form.get('email')
+        tipo_de_servico = request.form.get('tipo_de_servico')
+        inicio_trabalho = request.form.get('inicio_trabalho')
+        fim_trabalho = request.form.get('fim_trabalho')
+        senha = request.form.get('senha')
+        identificador = request.form.get('identificador')
+        descricao = request.form.get('descricao')
+        add_empregado = Empregados(nome = nome, selecao_empregados = selecao_empregados, indicacao = indicacao, salario = salario, idade = idade, telefone = telefone, email = email, tipo_de_servico = tipo_de_servico, inicio_trabalho = inicio_trabalho, fim_trabalho = fim_trabalho, senha = senha, identificador = identificador, descricao = descricao)
+        db.session.add(add_empregado)
+        db.session.commit()
+        message = 'empregado adicionado com sucesso'
+        return redirect(url_for('systemadmemployer'))
     return render_template('systemAdm/formsAdm/forms_add_employers.html')
+
+@app.route('/delete_employer/<int:id>')
+def delete_employer(id):
+    colaborador = Empregados.query.get(id)
+    
+    if colaborador:
+        db.session.delete(colaborador)
+        db.session.commit()
+
+    return redirect(url_for('systemadmemployer'))
 
 if __name__ == "__main__":
     app.run()

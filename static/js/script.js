@@ -15,5 +15,19 @@ function updateUianimated() {
   window.addEventListener('load', updateUianimated);
   window.addEventListener('scroll', updateUianimated);
   
+//js para parallax
+
+//js de driver 
+const driver = window.driver.js.driver;
+
+const driverObj = driver();
+
+driverObj.highlight({
+  element: "#homeadm",
+  popover: {
+    title: "Seja bem vindo",
+    description: "Description"
+  }
+});
 
   
