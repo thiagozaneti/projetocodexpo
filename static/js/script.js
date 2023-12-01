@@ -29,5 +29,3 @@ driverObj.highlight({
     description: "Description"
   }
 });
-
-  

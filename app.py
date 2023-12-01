@@ -305,9 +305,7 @@ if __name__ == "__main__":
     app.run()
     login_manager.init_app(app)
 
-##//TODO:DESENVOLVER TODOS OS CRUDS 
-##//TODO:Desenvolver crud de empregados
-##//TODO:TERMINAR VERIFICAÇÃO DO LOGIN DE USUÁRIO 
-##//TODO:Desenvolver algoritmo random identificador 
-##//TODO:Desenvolver sistema de email
 
+##//TODO:TERMINAR VERIFICAÇÃO DO LOGIN DE USUÁRIO 
+##//TODO:Desenvolver sistema de email
+##//TODO:Desenvolver algoritmo random identificador 
