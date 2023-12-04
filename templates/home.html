@@ -214,110 +214,60 @@
     </div>
 <!-- component -->
 
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-<script>
-  var cont=0;
-function loopSlider(){
-var xx= setInterval(function(){
-      switch(cont)
-      {
-      case 0:{
-          $("#slider-1").fadeOut(400);
-          $("#slider-2").delay(400).fadeIn(400);
-          $("#sButton1").removeClass("bg-teal-800");
-          $("#sButton2").addClass("bg-teal-800");
-      cont=1;
-      
-      break;
-      }
-      case 1:
-      {
-      
-          $("#slider-2").fadeOut(400);
-          $("#slider-1").delay(400).fadeIn(400);
-          $("#sButton2").removeClass("bg-teal-800");
-          $("#sButton1").addClass("bg-teal-800");
-         
-      cont=0;
-      
-      break;
-      }
-      
-      
-      }},8000);
-
-}
-
-function reinitLoop(time){
-clearInterval(xx);
-setTimeout(loopSlider(),time);
-}
 
 
-
-function sliderButton1(){
-
-  $("#slider-2").fadeOut(400);
-  $("#slider-1").delay(400).fadeIn(400);
-  $("#sButton2").removeClass("bg-teal-800");
-  $("#sButton1").addClass("bg-teal-800");
-  reinitLoop(4000);
-  cont=0
+<div id="default-carousel" class="relative w-full" data-carousel="slide">
   
-  }
-  
-  function sliderButton2(){
-  $("#slider-1").fadeOut(400);
-  $("#slider-2").delay(400).fadeIn(400);
-  $("#sButton1").removeClass("bg-teal-800");
-  $("#sButton2").addClass("bg-teal-800");
-  reinitLoop(4000);
-  cont=1
-  
-  }
-
-  $(window).ready(function(){
-      $("#slider-2").hide();
-      $("#sButton1").addClass("bg-teal-800");
-      
-
-      loopSlider();
+  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+ 
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+          <img src="/docs/images/carousel/carousel-1.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
    
-      
-  
-  
-  
-  
-  });
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+          <img src="/docs/images/carousel/carousel-2.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
 
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+          <img src="/docs/images/carousel/carousel-3.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
 
-</script>
-<div class="sliderAx h-auto">
-  <div id="slider-1" class="container mx-auto">
-      <div class="bg-cover bg-center  h-auto text-white py-24 px-10 object-fill" style="background-image: url(../static/img/ilustrações/2.png)">
-          <div class="md:w-1/2">
-          </div>  
-      </div> <!-- container -->
-      <br>
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+          <img src="/docs/images/carousel/carousel-4.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
+ 
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+          <img src="/docs/images/carousel/carousel-5.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
   </div>
-    
-  <div id="slider-2" class="container mx-auto">
-      <div class="bg-cover bg-top  h-auto text-white py-24 px-10 object-fill" style="background-image: url(../static/img/ilustrações/1.png)">
-     
-       
-       </div> <!-- container -->
-      <br>
-  </div>
-</div>
   
-<div  class="flex justify-between w-12 mx-auto pb-2">
-      <button id="sButton1" onclick="sliderButton1()" class="bg-teal-400 rounded-full w-4 pb-2 " ></button>
-  <button id="sButton2" onclick="sliderButton2() " class="bg-teal-400 rounded-full w-4 p-2"></button>
-</div>
+  <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+  </div>
+  <!-- Slider controls -->
+  <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30  group-hover:bg-white/50  group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
+          <svg class="w-4 h-4 text-white  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+          </svg>
+          <span class="sr-only">Previa</span>
+      </span>
+  </button>
+  <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50  group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
+          <svg class="w-4 h-4 text-white  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+          </svg>
+          <span class="sr-only">Proximo</span>
+      </span>
+  </button>
 </div>
 
 
-</body>
 
 
 
@@ -515,8 +465,8 @@ function sliderButton1(){
   </div>
   <section class="bg-dark ">
     <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-        <img class="w-full dark:hidden" src="../static/img/ilustrações/bone.png" alt="dashboard image">
-        <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup-dark.svg" alt="dashboard image">
+        <img class="w-full " src="../static/img/ilustrações/bone.png" alt="dashboard image">
+        <img class="w-full hidden " src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup-dark.svg" alt="dashboard image">
         <div class="mt-4 md:mt-0">
             <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-white">GARANTA SEU BRINDE DA CODEXPO!</h1>
             <p class="mb-6 font-light text-gray-200 md:text-lg ">Você encontrará uma seleção cuidadosamente escolhida de brindes exclusivos e memoráveis que capturam a essência da nossa conferência. Nossos produtos são mais do que simples lembranças; eles são uma celebração da comunidade Codexpo e uma maneira de levar um pedaço do evento para casa.</p>
