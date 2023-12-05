@@ -123,7 +123,7 @@ def login():
         password = request.form.get('senha')
         user = User.query.filter_by(email=email, password=password).first()
         admin_user = Admin.query.filter_by(email=email, password=password).first()  # Rename admin to admin_user
-        if len(password) < 6:
+        if len(password) < 4:
             message = 'senha com poucos caracteres'
         elif len(password) > 16:
             message = 'senha ultrapassando caracteres'
@@ -171,7 +171,7 @@ def systemShop():
 def system_profile():
     username = current_user.username
     email = current_user.email
-    nova_sequencia = session.pop('nova_sequencia', None)
+    nova_sequencia = session.get('nova_sequencia')
     return render_template('system/systemUser.html', nova_sequencia = nova_sequencia, username = username, email = email)
 
 @app.route('/system_Buy', methods = ['POST','GET'])
@@ -332,4 +332,3 @@ if __name__ == "__main__":
 
 
 ##//TODO:Desenvolver sistema de email
-##//TODO:Desenvolver pagina de usuário com 
