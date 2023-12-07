@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_admin.contrib.sqla import ModelView
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from flask_admin import Admin
 from flask_login import LoginManager, login_user, current_user, UserMixin, login_required, logout_user
 from flask_mail import Mail
 import random
 import string
+import time
 
 
 app = Flask(__name__)
@@ -183,10 +185,11 @@ def systemBuy():
         date_expires = request.form.get('date_expires')
         cvv = request.form.get('cvv')
         name_of_propriety = request.form.get('name_of_propriety')
+        selecao = request.form.get('selecao')
         email = request.form.get('email')
         if len(str(number_card)) != 16:
             message = 'Numero de cartao errado'
-        elif len(date_expires) !=4:
+        if len(date_expires) !=4:
             message = 'Numero de fim errado'
         elif len(cvv) !=3:
             message = 'Cvv errado'
@@ -197,9 +200,10 @@ def systemBuy():
             nova_sequencia = ''.join(random.choices(string.ascii_uppercase+ string.digits, k=8))
             session['nova_sequencia'] = nova_sequencia ## armazena variaveis em lista que recebem a variavel para a sessao do usuário
             ##fim do algoritmo
-            new_buy = Buy(number_card = number_card, date_expires = date_expires, cvv = cvv, name_of_propriety = name_of_propriety, email = email, sequencia = nova_sequencia)
+            new_buy = Buy(number_card = number_card, date_expires = date_expires, cvv = cvv, name_of_propriety = name_of_propriety, email = email, selecao = selecao, sequencia = nova_sequencia)
             db.session.add(new_buy)
             db.session.commit()
+            time.sleep(5)
             return redirect(url_for('systemBuy', nova_sequencia = nova_sequencia) )
     return render_template('system/systemBuy.html', message = message)
 
@@ -209,9 +213,12 @@ def systemBuy():
 @app.route('/homeadm')
 
 def homeadm():
+    total_ingressos = Buy.query.count()
+    valor_todos_ingressos = db.session.query(func.sum(Buy.selecao)).scalar() or 0
+    total_users = User.query.count()
     username = current_user.username
     email = current_user.email
-    return render_template('systemAdm/systemAdmHome.html', username=username, email=email)
+    return render_template('systemAdm/systemAdmHome.html', username=username, email=email, total_ingressos = total_ingressos, total_users = total_users, valor_todos_ingressos = valor_todos_ingressos)
 
 @app.route('/system_adm_insc')
 def systemadminsc():
