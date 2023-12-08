@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from flask_admin import Admin
 from flask_login import LoginManager, login_user, current_user, UserMixin, login_required, logout_user
-from flask_mail import Mail
+from flask_mail import Mail, Message
 import random
 import string
 import time
@@ -22,6 +22,16 @@ app.config['SECRET_KEY'] = 'ttttgg,x>a({&(5oqffx,`@>w[]pmifi|]#{6?q60ov#h~@wr>ny
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
+mail = Mail(app)
+
+app.config['MAIL_SERVER'] = 'smtp.example.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'th2006zadosa@gmail.com'
+app.config['MAIL_PASSWORD'] = 'ctmu mpig bemw caac'
+app.config['MAIL_DEFAULT_SENDER'] = 'th2006zadosa@gmail.com'
+
 
 class User(db.Model, UserMixin): 
     __tablename__ = "inscricoes"
@@ -86,6 +96,7 @@ def load_user(user_id):
 @app.route('/')
 def index(): 
     return render_template('home.html')
+
 
 @app.route('/sair')
 def exit():
@@ -176,7 +187,7 @@ def system_profile():
     nova_sequencia = session.get('nova_sequencia')
     return render_template('system/systemUser.html', nova_sequencia = nova_sequencia, username = username, email = email)
 
-@app.route('/system_Buy', methods = ['POST','GET'])
+@app.route('/system_buy', methods = ['POST','GET'])
 @login_required
 def systemBuy():
     message = ''
