@@ -14,34 +14,28 @@
     <span></span>
 </div>
 <div class="p-4 sm:ml-64">
-  <div class="min-h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
-        <!-- Seção de Perfil -->
-        <div class="mb-6 flex items-center justify-center">
-            <img src="https://cdn-icons-png.flaticon.com/512/3106/3106921.png" alt="Ícone de Perfil" class="w-16 h-16 rounded-full mr-4">
-            <div>
-                <h1 class="text-2xl font-bold mb-1">{{ username }}</h1>
-                <p class="text-gray-600">{{ email }}</p>
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full sm:w-96">
+            <div class="mb-6 flex items-center justify-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/3106/3106921.png" alt="Ícone de Perfil"
+                    class="w-16 h-16 rounded-full mr-4">
+                <div>
+                    <h1 class="text-2xl font-bold mb-1">{{ username }}</h1>
+                    <p class="text-gray-600">{{ email }}</p>
+                </div>
             </div>
+            <div class="mb-6">
+                <h2 class="text-2xl font-semibold mb-2">Meus Ingressos:</h2>
+                <ul>
+                    <li class="flex items-center space-x-2 mb-2">
+                        <span class="  text-black text-xl"><span class="bg-teal-400 p-2 border rounded ">Codigo
+                                Ingresso</span> {{ nova_sequencia }}</span>
+                    </li>
+                </ul>
+            </div>
+            <button
+                class="bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring focus:border-red-300">Sair</button>
         </div>
-
-        <!-- Seção de Meus Ingressos -->
-        <div class="mb-6">
-            <h2 class="text-lg font-semibold mb-2">Meus Ingressos</h2>
-            <ul>
-                <li class="flex items-center space-x-2 mb-2">
-                    <span class="text-gray-600">Ingresso Codexpo - {{ nova_sequencia }}</span>
-                </li>
-                
-                <!-- Adicione mais itens conforme necessário -->
-            </ul>
-        </div>
-
-        <!-- Botão de Sair -->
-        <button class="bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring focus:border-red-300">Sair</button>
     </div>
 </div>
-
- </div>
- 
 {% endblock %}

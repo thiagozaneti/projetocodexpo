@@ -211,14 +211,18 @@ def systemBuy():
 ##<---------------------------------->
 
 @app.route('/homeadm')
-
 def homeadm():
     total_ingressos = Buy.query.count()
     valor_todos_ingressos = db.session.query(func.sum(Buy.selecao)).scalar() or 0
     total_users = User.query.count()
-    username = current_user.username
-    email = current_user.email
-    return render_template('systemAdm/systemAdmHome.html', username=username, email=email, total_ingressos = total_ingressos, total_users = total_users, valor_todos_ingressos = valor_todos_ingressos)
+    total_administradores = Admin.query.count()
+    total_colaboradores = Empregados.query.count()
+    username = None
+    email = None
+    if current_user.is_authenticated:
+        username = current_user.username
+        email = current_user.email
+    return render_template('systemAdm/systemAdmHome.html',total_administradores = total_administradores, total_colaboradores = total_colaboradores, username = username, email=email, total_ingressos = total_ingressos, total_users = total_users, valor_todos_ingressos = valor_todos_ingressos)
 
 @app.route('/system_adm_insc')
 def systemadminsc():
@@ -290,7 +294,15 @@ def addAdmin():
             return redirect(url_for('systemadms'))
     return render_template('systemAdm/formsAdm/forms_add_admins.html', message = message)
 
+@app.route('/delete_admin/<int:id>')
+def delete_admin(id):
+    administrador = Admin.query.get(id)
+    
+    if administrador:
+        db.session.delete(administrador)
+        db.session.commit()
 
+    return redirect(url_for('systemadms'))
 
 @app.route('/system_adm_employer')
 def systemadmemployer():
@@ -339,3 +351,4 @@ if __name__ == "__main__":
 
 
 ##//TODO:Desenvolver sistema de email
+##//TODO:Deletar admin

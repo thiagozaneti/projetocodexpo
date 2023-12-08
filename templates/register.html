@@ -1,90 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codexpo</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codexpo</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 </head>
 
 <body class="bg-black">
-    <div class="wrapper">
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-</div>
+  <div class="wrapper">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-<div class="w-full h-screen flex items-center justify-center">
+  <div class="w-full h-screen flex items-center justify-center">
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{url_for('register')}}" method="post">
-        <div class="text-3xl"> 
-            <h1>Registre-se</h1>
-        </div>
-        <div class="text-1xl pt-4 pb-4 "> 
-            <p>Acesse nosso sistema para comprar ingressos e ficar por dentro!</p>
-        </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-              Nome
-            </label>
-            <input name="nome" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="nome">
-          </div>
+      <div class="text-3xl">
+        <h1>Registre-se</h1>
+      </div>
+      <div class="text-1xl pt-4 pb-4 ">
+        <p>Acesse nosso sistema para comprar ingressos e ficar por dentro!</p>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Nome
+        </label>
+        <input name="nome"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username" type="text" placeholder="nome">
+      </div>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
           Email
         </label>
-        <input  name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="email">
+        <input name="email"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="email" type="text" placeholder="email">
       </div>
       <div class="mb-6">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
           Password
         </label>
-        <input name="senha" class="shadow appearance-none border border-teal-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+        <input name="senha"
+          class="shadow appearance-none border border-teal-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          id="password" type="password" placeholder="******************">
         <p class="text-gray-800 text-xs italic">Escolha uma senha segura</p>
       </div>
       <div class="flex items-center justify-between">
-        <button class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+        <button
+          class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit">
           Registrar
         </button>
-        <a class="inline-block align-baseline font-bold text-sm text-teal-600 hover:text-teal-800" href="{{url_for('login') }}">
+        <a class="inline-block align-baseline font-bold text-sm text-teal-600 hover:text-teal-800"
+          href="{{url_for('login') }}">
           Fazer Login
         </a>
       </div>
       <div class="text-center items-center justify-center pt-2 flex items-center">
         <a href="{{url_for('index')}}">
-            <i class="uil uil-arrow-left">
+          <i class="uil uil-arrow-left">
 
-            </i>
-            <p>voltar</p></a>
+          </i>
+          <p>voltar</p>
+        </a>
       </div>
       <div class="flex p-4 mb-4 text-sm text-gray-800 rounded-lg bg-gray-50" role="alert">
-        <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+        <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor" viewBox="0 0 20 20">
+          <path
+            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
         </svg>
         <span class="sr-only"></span>
         <div>
           <span class="font-medium">Suas Informações deve conter:</span>
-            <ul class="mt-1.5 list-disc list-inside">
-              <li>Nome de usuário deve ter entre 3 a 30 caracteres </li>
-              <li>Senha deve ter entre 6 a 16 caracteres</li>
-              <li>Email deve ser válido</li>
+          <ul class="mt-1.5 list-disc list-inside">
+            <li>Nome de usuário deve ter entre 3 a 30 caracteres </li>
+            <li>Senha deve ter entre 6 a 16 caracteres</li>
+            <li>Email deve ser válido</li>
           </ul>
         </div>
       </div>
     </form>
-    
+
 
   </div>
 
 </body>
+
 </html>

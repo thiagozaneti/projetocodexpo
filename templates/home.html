@@ -1,513 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Codexpo</title>
-    <script src="../static/js/script.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Codexpo</title>
+  <script src="../static/js/script.js"></script>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body class="bg-black">  
+<body class="bg-black">
   <div class="wrapper">
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-</div>
-      
-      <div class="bg-transparent">
-        <header class="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-blue-900 md:mx-auto md:flex-row md:items-center">
-          <a href="#" class="flex cursor-pointer items-center whitespace-nowrap text-2xl font-black text-blue-500">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="bg-transparent">
+    <header
+      class="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-blue-900 md:mx-auto md:flex-row md:items-center">
+      <a href="#" class="flex cursor-pointer items-center whitespace-nowrap text-2xl font-black text-blue-500">
+        <div>
+          <img src="../static/img/logo/Logo total.jpeg" alt="erro" width="150px" />
+        </div>
+      </a>
+      <input type="checkbox" class="peer hidden" id="navbar-open" />
+      <label class="absolute top-5 right-7 cursor-pointer md:hidden text-teal-300" for="navbar-open">
+        <span class="sr-only">Toggle</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+      <nav aria-label="Header Navigation"
+        class="peer-checked:mt-8 peer-checked:max-h-56 flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all md:ml-24 md:max-h-full md:flex-row md:items-start">
+        <ul class="flex flex-col items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
+          <li class="font-bold-100 text-gray-100 md:mr-12"><a>Home</a></li>
+          <li class="text-gray-100 md:mr-12"><a href="#cards_palestrante">Palestrantes</a></li>
+          <li class="font-gray-100 text-gray-100 md:mr-12"><a href="#cards_compra">Ingressos</a></li>
+          <li class="text-gray-100 md:mr-12"><a href="#cards_contate">Contate-nos</a></li>
+          <li class="md:mr-12">
             <div>
-              <img src="../static/img/logo/Logo total.jpeg" alt="erro" width="150px" />
+              <a href="{{url_for('login')}}"><button
+                  class="rounded-full border-2 border-white px-6 py-1 font-medium text-white transition-colors hover:bg-white hover:text-gray-700">Login</button>
+              </a>
             </div>
-          </a>
-          <input type="checkbox" class="peer hidden" id="navbar-open" />
-          <label class="absolute top-5 right-7 cursor-pointer md:hidden text-teal-300" for="navbar-open">
-            <span class="sr-only">Toggle</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </label>
-          <nav aria-label="Header Navigation" class="peer-checked:mt-8 peer-checked:max-h-56 flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all md:ml-24 md:max-h-full md:flex-row md:items-start">
-            <ul class="flex flex-col items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
-              <li class="font-bold-100 text-gray-100 md:mr-12"><a>Home</a></li>
-              <li class="text-gray-100 md:mr-12"><a href="#cards_palestrante">Palestrantes</a></li>
-              <li  class="font-gray-100 text-gray-100 md:mr-12"><a href="#cards_compra">Ingressos</a></li>
-              <li class="text-gray-100 md:mr-12"><a href="#cards_contate">Contate-nos</a></li>
-              <li class="md:mr-12">
-                <div>
-                  <a href="{{url_for('login')}}"><button class="rounded-full border-2 border-white px-6 py-1 font-medium text-white transition-colors hover:bg-white hover:text-gray-700">Login</button>
-                  </a>
-                </div>
-                
-              </li>
-            </ul>
-          </nav>
-        </header>
-      
-        <div class="mx-auto h-full px-4 py-28 md:py-40 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
-          <div class="flex flex-col items-center justify-between lg:flex-row">
-            <div class="uianimated right">
-              <div class="lg:max-w-xl lg:pr-5">
-                <p class="flex text-sm uppercase text-gray-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 inline h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" />
-                  </svg>
-                  Uma agência de ótimas palestras
-                </p>
-                <h2 class="mb-6 max-w-lg text-4xl font-bold leading-snug tracking-tight text-white sm:text-7xl sm:leading-snug">
-                  WORKSHOPS
-                  <span class="my-1 inline-block border-b-8 border-white bg-teal-600 px-4 font-bold text-white">INOVADORES</span>
-                </h2>
-                <p class="text-base text-gray-400">
-                  Codexpo: Elevando Eventos ao Próximo Nível
-                  
-                  Bem-vindo ao universo da Codexpo, a agência que transcende os limites convencionais, unindo com maestria a arte do marketing e a essencialidade da cybersegurança</p>
-              </div>
-              <div class="mt-10 flex flex-col items-center md:flex-row">
-                <a href="#sec-sobre" class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-teal-900 px-6 font-medium tracking-wide text-white shadow-md transition md:mr-4 md:mb-0 md:w-auto focus:outline-none hover:bg-teal-800">Conhecer codexpo </a>
-                <a href="{{url_for('register')}}" aria-label="" class="group inline-flex items-center font-semibold text-white"
-                  >Fazer cadastro
-                  <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:translate-x-2 ml-4 h-6 w-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div class="relative hidden lg:ml-32 lg:block lg:w-1/2 uianimated left">
-              <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto my-6 h-10 w-10 animate-bounce rounded-full bg-teal-50 p-2 lg:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16 17l-4 4m0 0l-4-4m4 4V3" />
+
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="mx-auto h-full px-4 py-28 md:py-40 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
+      <div class="flex flex-col items-center justify-between lg:flex-row">
+        <div class="uianimated right">
+          <div class="lg:max-w-xl lg:pr-5">
+            <p class="flex text-sm uppercase text-gray-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 inline h-5 w-5" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z"
+                  clip-rule="evenodd" />
               </svg>
-              <div class="abg-teal-400 w-fit rounded-[6rem] mx-auto overflow-hidden rounded-tl-none rounded-br-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="absolute -left-10 -top-20 h-28 w-28 rounded-xl text-teal-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 -bottom-20 h-28 w-28 rounded-xl text-teal-100" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" />
-                </svg>
-                <div class="flex w-96 flex-wrap">
-                  <div class="h-48 w-1/2 rounded-full rounded-br-none bg-gray-600"></div>
-                  <div class="rounded-[6rem] h-48 w-1/2 rounded-tl-none rounded-br-none bg-white"></div>
-                  <div class="h-48 w-1/2 rounded-full rounded-b-none rounded-br-none bg-teal-400"></div>
-                  <div class="h-48 w-1/2 rounded-full rounded-t-none rounded-br-none bg-teal-600"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      
-     
-<!--Sobre o evento-->
-<section id="sec-sobre" class="text-gray-600 body-font pt-18  uianimated" id="sec-evento" >
-    <div class="container px-5 py-24 mx-auto">
-        <div class="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
-         <h1 class="text-white text-5xl py-6  ">Sobre o Evento</h1>
-          <p class="leading-relaxed text-lg text-gray-200 ">Estamos empolgados em anunciar o Codexpo, um evento inovador que reúne dois pilares essenciais da era digital: marketing e cybersegurança. Este evento de vanguarda promete ser uma experiência única para profissionais, especialistas e entusiastas interessados em explorar como essas duas disciplinas interagem e moldam o cenário empresarial atual.</p>
-            <span class="inline-block h-1 w-40 rounded bg-teal-100 mt-8 mb-6 bg-teal-400"></span>
-          <p class="text-gray-200">Diretor Produtor Codexpo</p>
-        </div>
-    </div>
-</section>
-      
-<!--Palestrantes-->
-<section id="cards_palestrante" class="text-gray-600 body-font  uianimated" id="sec-palestrantes">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-col text-center w-full mb-20">
-      <h1 class="text-4xl font-medium title-font mb-4 text-zinc-200">PALESTRANTES</h1>
-    </div>
-    <div class="flex flex-wrap -m-4">
-      <div class="p-4 lg:w-1/4 md:w-1/2">
-        <div class="h-full flex flex-col items-center text-center">
-          <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="../static/img/palestrantes/milena.jpeg">
-          <div class="w-full">
-            <h2 class="title-font font-medium text-lg text-gray-50  ">Milena Oliveira</h2>
-            <p class="mb-4 text-gray-200">Especialista em Ética e Privacidade de Dados na web </p>
-            <span class="inline-flex">
-              <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
-                <i class="uil uil-instagram text-2xl "></i>
-              </a>
-              <a class="ml-2 text-gray-500 hover:text-gray-100 transition ease-in-out delay-150  ">
-                <i class="uil uil-envelope text-2xl "></i>
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="p-4 lg:w-1/4 md:w-1/2">
-        <div class="h-full flex flex-col items-center text-center">
-          <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="../static/img/palestrantes/wendel.jpeg">
-          <div class="w-full">
-            <h2 class="title-font font-medium text-lg text-gray-50">Wendel Cortes</h2>
-            <p class="mb-4 text-gray-200 ">Especialista em Cybersegurança e Inovação Tecnológica
+              Uma agência de ótimas palestras
             </p>
-            <span class="inline-flex">
-              <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
-                <i class="uil uil-instagram text-2xl "></i>
-              </a>
-              <a class="ml-2 text-gray-500 hover:text-gray-100 transition ease-in-out delay-150  ">
-                <i class="uil uil-envelope text-2xl "></i>
-              </a>
-            </span>
+            <h2
+              class="mb-6 max-w-lg text-4xl font-bold leading-snug tracking-tight text-white sm:text-7xl sm:leading-snug">
+              WORKSHOPS
+              <span
+                class="my-1 inline-block border-b-8 border-white bg-teal-600 px-4 font-bold text-white">INOVADORES</span>
+            </h2>
+            <p class="text-base text-gray-400">
+              Codexpo: Elevando Eventos ao Próximo Nível
+
+              Bem-vindo ao universo da Codexpo, a agência que transcende os limites convencionais, unindo com maestria a
+              arte do marketing e a essencialidade da cybersegurança</p>
           </div>
-        </div>
-      </div>
-      <div class="p-4 lg:w-1/4 md:w-1/2">
-        <div class="h-full flex flex-col items-center text-center">
-          <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="../static/img/palestrantes/cleber.jpeg">
-          <div class="w-full">
-            <h2 class="title-font font-medium text-lg text-gray-50">Cleber</h2>
-            <p class="mb-4 text-gray-200 ">Consultor de Marketing Digital e Estratégias de Crescimento</p>
-            <span class="inline-flex">
-              <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
-                <i class="uil uil-instagram text-2xl "></i>
-              </a>
-              <a class="ml-2 text-gray-500 hover:text-gray-100 transition ease-in-out delay-150  ">
-                <i class="uil uil-envelope text-2xl "></i>
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="p-4 lg:w-1/4 md:w-1/2">
-        <div class="h-full flex flex-col items-center text-center">
-          <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="../static/img/palestrantes/attique.jpeg">
-          <div class="w-full">
-            <h2 class="title-font font-medium text-lg text-gray-50">Rodrigo</h2>
-            <p class="mb-4 text-gray-300 ">Especialista em Inteligência Artificial e Análise de Dados</p>
-            <span class="inline-flex">
-              <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
-                <i class="uil uil-instagram text-2xl "></i>
-              </a>
-              <a class="ml-2 text-gray-500 hover:text-gray-100 transition ease-in-out delay-150  ">
-                <i class="uil uil-envelope text-2xl "></i>
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<div class="pt-32 uianimated">
-    <div class="flex flex-col text-center w-full mb-20">
-        <h1 class="text-4xl font-medium title-font mb-4 text-zinc-200">Cronogramas</h1>
-    </div>
-<!-- component -->
-
-
-<!--carrossel-->
-<div id="default-carousel" class="relative w-full" data-carousel="slide">
-  
-  <div class="relative h-56 overflow-hidden rounded-lg md:h-96 uianimated">
- 
-      <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src="../static/img/itens/milena 2023-12-07 at 13.49.41.jpeg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-      </div>
-   
-      <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src="../static/img/itens/wendel 2023-12-07 at 13.49.50.jpeg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-      </div>
-
-      <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src="/static/img/8 DE DEZEMBRO/3.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-      </div>
-
-      <div class="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src="/static/img/8 DE DEZEMBRO/4.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-      </div>
-  </div>
-  
-  <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse uianimated">
-      <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-  </div>
-  <!-- Slider controls -->
-  <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30  group-hover:bg-white/50  group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
-          <svg class="w-4 h-4 text-white  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-          </svg>
-          <span class="sr-only">Previa</span>
-      </span>
-  </button>
-  <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-      <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50  group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
-          <svg class="w-4 h-4 text-white  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-          </svg>
-          <span class="sr-only">Proximo</span>
-      </span>
-  </button>
-</div>
-
-
-
-
-
-
-  
-
-<!--Cards de compra-->
-<section id="cards_compra" class="text-gray-600 body-font overflow-hidden pt-32 uianimated" >
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-col text-center w-full mb-20">
-      <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-100">INGRESSOS</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-200">Aqui, você pode explorar e adquirir ingressos para uma ampla variedade de atividades, desde espetáculos <br> ao vivo e eventos esportivos até workshops e atrações culturais.</p>
-    </div>
-
-    <div  class="flex flex-wrap -m-4 uianimated">
-      <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-        <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
-          <h2 class="text-sm tracking-widest title-font text-gray-200 mb-1 font-medium">BASIC</h2>
-          <h1 class="text-5xl text-teal-400 pb-4 mb-4 border-b border-gray-200 leading-none">$12,99</h1>
-          <p class="flex items-center text-g text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
+          <div class="mt-10 flex flex-col items-center md:flex-row">
+            <a href="#sec-sobre"
+              class="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-teal-900 px-6 font-medium tracking-wide text-white shadow-md transition md:mr-4 md:mb-0 md:w-auto focus:outline-none hover:bg-teal-800">Conhecer
+              codexpo </a>
+            <a href="{{url_for('register')}}" aria-label=""
+              class="group inline-flex items-center font-semibold text-white">Fazer cadastro
+              <svg xmlns="http://www.w3.org/2000/svg"
+                class="group-hover:translate-x-2 ml-4 h-6 w-6 transition-transform" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </span>Acesso a palestras e workshops.
-          </p>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Materiais digitais pós-evento.
-          </p>
-          <p class="flex items-center text-gray-300 mb-6">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Certificado de participação digital.
-          </p>
-          <a href="{{url_for('register')}}" class="flex items-center mt-auto text-white bg-teal-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-teal-600 rounded">COMPRAR
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-          <p class="text-xs text-gray-500 mt-3">Compra de ingresso sobre juridição brasileira e pagamentos pessoais.</p>
-        </div>
-      </div>
-
-      
-      <div class="p-4 xl:w-1/4 md:w-1/2 w-full ">
-        <div class="h-full p-6 rounded-lg border-2 border-teal-300 flex flex-col relative overflow-hidden">
-          <span class="bg-teal-400 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">POPULAR</span>
-          <h2 class="text-sm tracking-widest title-font text-gray-200 mb-1 font-medium">PRO</h2>
-          <h1 class="text-5xl text-teal-400 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
-            <span>$29,99</span>
-          </h1>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Benefícios do Plano Básico.
-          </p>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Assentos reservados e sessões de perguntas e respostas com os palestrantes.
-          </p>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Acesso a um painel de discussão adicional.
-          </p>
-          <p class="flex items-center text-gray-300 mb-6">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Consultoria personalizada pós-evento.
-          </p>
-          <a href="{{url_for('register')}}" class="flex items-center mt-auto text-white bg-teal-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-teal-600 rounded">COMPRAR
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-          <p class="text-xs text-gray-500 mt-3">Compra de ingresso sobre juridição brasileira e pagamentos pessoais.</p>
-        </div>
-      </div>
-
-
-      <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-        <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
-          <h2 class="text-sm tracking-widest title-font text-gray-200 mb-1 font-medium">MASTER</h2>
-          <h1 class="text-5xl text-teal-400 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
-            <span>$49,99</span>
-          </h1>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Benefícios do Plano Premium.
-          </p>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Acesso a uma recepção exclusiva com os palestrantes.
-          </p>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Webinar exclusivo pós-evento.
-          </p>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Participação em um grupo de discussão fechado para networking contínuo.
-          </p>
-          <a href="{{url_for('register')}}" class="flex items-center mt-auto text-white bg-teal-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-teal-600 rounded">COMPRAR
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-          <p class="text-xs text-gray-500 mt-3">Compra de ingresso sobre juridição brasileira e pagamentos pessoais.</p>
-        </div>
-      </div>
-
-      <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-        <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
-          <h2 class="text-sm tracking-widest title-font text-gray-200 mb-1 font-medium">VIP</h2>
-          <h1 class="text-5xl text-teal-400 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
-            <span>$100</span>
-          </h1>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Inclui todos os benefícios do Plano VIP.
-          </p>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Acesso garantido ao evento do próximo ano.
-          </p>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Participação em um grupo exclusivo de networking pré-evento.
-          </p>
-          <p class="flex items-center text-gray-300 mb-2">
-            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                <path d="M20 6L9 17l-5-5"></path>
-              </svg>
-            </span>Acesso antecipado a materiais exclusivos de pré-evento e oportunidades de participação na seleção de tópicos e palestrantes para o próximo evento.
-          </p>
-          <a href="{{url_for('register')}}" class="flex items-center mt-auto text-white bg-teal-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-teal-600 rounded">COMPRAR
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-          <p class="text-xs text-gray-500 mt-3">Compra de ingresso sobre juridição brasileira e pagamentos pessoais.</p>
-        </div>
-      </div>
-      
-    
-    </div>
-  </div>
-</section>
-
-
-
-<div class="wrapper uianimated">
-    <main>
-      <section class="module parallax parallax-1">
-      </section>
-
-    </main>
-  </div>
-  <section class="bg-dark uianimated">
-    <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-        <img class="w-full " src="../static/img/ilustrações/bone.png" alt="dashboard image">
-        <img class="w-full hidden " src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup-dark.svg" alt="dashboard image">
-        <div class="mt-4 md:mt-0">
-            <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-white">GARANTA SEU BRINDE DA CODEXPO!</h1>
-            <p class="mb-6 font-light text-gray-200 md:text-lg ">Você encontrará uma seleção cuidadosamente escolhida de brindes exclusivos e memoráveis que capturam a essência da nossa conferência. Nossos produtos são mais do que simples lembranças; eles são uma celebração da comunidade Codexpo e uma maneira de levar um pedaço do evento para casa.</p>
-            <a href="{{url_for('register')}}" class="inline-flex items-center text-white bg-teal-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                Acessar loja
-                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
             </a>
+          </div>
         </div>
-    </div>
-</section>
-
-
-
-  <!--contate-nos-->
-  <section id="cards_contate" class="text-white uianimated" id="sec-contato">
-    <div class="container px-5 py-24 mx-auto uianimated">
-      <div class="flex flex-col text-center w-full mb-12">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-teal-400">Contate-nos</h1>
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-gray-200 text-base">Se você tiver alguma pergunta, comentário, sugestão ou precisa de suporte, esta é a sua porta de entrada. <br> Nossa equipe está aqui para ajudar e garantir que sua experiência com nosso site seja a melhor possível. </p>
+        <div class="relative hidden lg:ml-32 lg:block lg:w-1/2 uianimated left">
+          <svg xmlns="http://www.w3.org/2000/svg"
+            class="mx-auto my-6 h-10 w-10 animate-bounce rounded-full bg-teal-50 p-2 lg:hidden" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 17l-4 4m0 0l-4-4m4 4V3" />
+          </svg>
+          <div class="abg-teal-400 w-fit rounded-[6rem] mx-auto overflow-hidden rounded-tl-none rounded-br-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="absolute -left-10 -top-20 h-28 w-28 rounded-xl text-teal-400"
+              viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="absolute right-0 -bottom-20 h-28 w-28 rounded-xl text-teal-100" viewBox="0 0 20 20"
+              fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z"
+                clip-rule="evenodd" />
+            </svg>
+            <div class="flex w-96 flex-wrap">
+              <div class="h-48 w-1/2 rounded-full rounded-br-none bg-gray-600"></div>
+              <div class="rounded-[6rem] h-48 w-1/2 rounded-tl-none rounded-br-none bg-white"></div>
+              <div class="h-48 w-1/2 rounded-full rounded-b-none rounded-br-none bg-teal-400"></div>
+              <div class="h-48 w-1/2 rounded-full rounded-t-none rounded-br-none bg-teal-600"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="lg:w-1/2 md:w-2/3 mx-auto">
-        <div class="flex flex-wrap -m-2">
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="name" class="leading-7 text-sm text-white">Nome</label>
-              <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-gray-900 rounded border border-gray-300 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="email" class="leading-7 text-sm text-white">Email</label>
-              <input type="email" id="email" name="email" class="w-full bg-gray-900 rounded border border-gray-300 focus:border-teal-400 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2 w-full">
-            <div class="relative">
-              <label for="message" class="leading-7 text-sm text-white">Mensagem</label>
-              <textarea id="message" name="message" class="w-full bg-gray-900 rounded border border-gray-300 focus:border-teal-400 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
-            </div>
-          </div>
-          <div class="p-2 w-full">
-            <button class="flex mx-auto text-white bg-teal-400 border-0 py-2 px-8 focus:outline-none hover:bg-teal-600 rounded text-lg">Enviar</button>
-          </div>
-          <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-            <span class="inline-flex">
+    </div>
+  </div>
+
+
+
+  <!--Sobre o evento-->
+  <section id="sec-sobre" class="text-gray-600 body-font pt-18  uianimated" id="sec-evento">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
+        <h1 class="text-white text-5xl py-6  ">Sobre o Evento</h1>
+        <p class="leading-relaxed text-lg text-gray-200 ">Estamos empolgados em anunciar o Codexpo, um evento inovador
+          que reúne dois pilares essenciais da era digital: marketing e cybersegurança. Este evento de vanguarda promete
+          ser uma experiência única para profissionais, especialistas e entusiastas interessados em explorar como essas
+          duas disciplinas interagem e moldam o cenário empresarial atual.</p>
+        <span class="inline-block h-1 w-40 rounded bg-teal-100 mt-8 mb-6 bg-teal-400"></span>
+        <p class="text-gray-200">Diretor Produtor Codexpo</p>
+      </div>
+    </div>
+  </section>
+
+  <!--Palestrantes-->
+  <section id="cards_palestrante" class="text-gray-600 body-font  uianimated" id="sec-palestrantes">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="text-4xl font-medium title-font mb-4 text-zinc-200">PALESTRANTES</h1>
+      </div>
+      <div class="flex flex-wrap -m-4">
+        <div class="p-4 lg:w-1/4 md:w-1/2">
+          <div class="h-full flex flex-col items-center text-center">
+            <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+              src="../static/img/palestrantes/milena.jpeg">
+            <div class="w-full">
+              <h2 class="title-font font-medium text-lg text-gray-50  ">Milena Oliveira</h2>
+              <p class="mb-4 text-gray-200">Especialista em Ética e Privacidade de Dados na web </p>
               <span class="inline-flex">
                 <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
                   <i class="uil uil-instagram text-2xl "></i>
@@ -516,7 +175,62 @@
                   <i class="uil uil-envelope text-2xl "></i>
                 </a>
               </span>
-            </span>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 lg:w-1/4 md:w-1/2">
+          <div class="h-full flex flex-col items-center text-center">
+            <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+              src="../static/img/palestrantes/wendel.jpeg">
+            <div class="w-full">
+              <h2 class="title-font font-medium text-lg text-gray-50">Wendel Cortes</h2>
+              <p class="mb-4 text-gray-200 ">Especialista em Cybersegurança e Inovação Tecnológica
+              </p>
+              <span class="inline-flex">
+                <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
+                  <i class="uil uil-instagram text-2xl "></i>
+                </a>
+                <a class="ml-2 text-gray-500 hover:text-gray-100 transition ease-in-out delay-150  ">
+                  <i class="uil uil-envelope text-2xl "></i>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 lg:w-1/4 md:w-1/2">
+          <div class="h-full flex flex-col items-center text-center">
+            <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+              src="../static/img/palestrantes/cleber.jpeg">
+            <div class="w-full">
+              <h2 class="title-font font-medium text-lg text-gray-50">Cleber</h2>
+              <p class="mb-4 text-gray-200 ">Consultor de Marketing Digital e Estratégias de Crescimento</p>
+              <span class="inline-flex">
+                <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
+                  <i class="uil uil-instagram text-2xl "></i>
+                </a>
+                <a class="ml-2 text-gray-500 hover:text-gray-100 transition ease-in-out delay-150  ">
+                  <i class="uil uil-envelope text-2xl "></i>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 lg:w-1/4 md:w-1/2">
+          <div class="h-full flex flex-col items-center text-center">
+            <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
+              src="../static/img/palestrantes/attique.jpeg">
+            <div class="w-full">
+              <h2 class="title-font font-medium text-lg text-gray-50">Rodrigo</h2>
+              <p class="mb-4 text-gray-300 ">Especialista em Inteligência Artificial e Análise de Dados</p>
+              <span class="inline-flex">
+                <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
+                  <i class="uil uil-instagram text-2xl "></i>
+                </a>
+                <a class="ml-2 text-gray-500 hover:text-gray-100 transition ease-in-out delay-150  ">
+                  <i class="uil uil-envelope text-2xl "></i>
+                </a>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -524,41 +238,442 @@
   </section>
 
 
-  <footer class="text-gray-600 body-font uianimated">
-    <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
-      <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-          <img src="../static/img/logo/Logo total.jpeg" alt="erro" width="200px">
-        </a>
-        <p class="mt-2 text-sm text-gray-500">© 2023 CODEXPO. Todos os direitos reservados. Rua franx.Souza Barretos, São Paulo 17-471-715 | codexpo.supporte@gmail.com 17981213736</p>
-      </div>
-      <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
-        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 class="title-font font-medium text-gray-200 tracking-widest text-sm mb-3">CATEGORIAS</h2>
-          <nav class="list-none mb-10">
-            <li>
-              <a class="text-gray-200 hover:text-gray-800">HOME</a>
-            </li>
-            <li>
-              <a class="text-gray-200 hover:text-gray-800">SOBRE</a>
-            </li>
-            <li>
-              <a class="text-gray-200 hover:text-gray-800">PALESTRANTES</a>
-            </li>
-            <li>
-              <a class="text-gray-200 hover:text-gray-800">INGRESSOS</a>
-            </li>
-            <li>
-              <a class="text-gray-200 hover:text-gray-800">CONTATE-NOS</a>
-            </li>
-            <li>
-              <a class="text-gray-200 hover:text-gray-800">LOJA</a>
-            </li>
-          </nav>
+
+  <div class="pt-32 uianimated">
+    <div class="flex flex-col text-center w-full mb-20">
+      <h1 class="text-4xl font-medium title-font mb-4 text-zinc-200">Cronogramas</h1>
+    </div>
+    <!-- component -->
+
+
+    <!--carrossel-->
+    <div id="default-carousel" class="relative w-full" data-carousel="slide">
+
+      <div class="relative h-56 overflow-hidden rounded-lg md:h-96 uianimated">
+
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+          <img src="../static/img/itens/milena 2023-12-07 at 13.49.41.jpeg"
+            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+          <img src="../static/img/itens/wendel 2023-12-07 at 13.49.50.jpeg"
+            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+          <img src="/static/img/8 DE DEZEMBRO/3.png"
+            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+          <img src="/static/img/8 DE DEZEMBRO/4.png"
+            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
       </div>
-    </div>
-  </footer>
 
-  <script src="transition.js"></script>
+      <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse uianimated">
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+          data-carousel-slide-to="0"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+          data-carousel-slide-to="1"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+          data-carousel-slide-to="2"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+          data-carousel-slide-to="3"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+          data-carousel-slide-to="4"></button>
+      </div>
+      <!-- Slider controls -->
+      <button type="button"
+        class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        data-carousel-prev>
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30  group-hover:bg-white/50  group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
+          <svg class="w-4 h-4 text-white  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5 1 1 5l4 4" />
+          </svg>
+          <span class="sr-only">Previa</span>
+        </span>
+      </button>
+      <button type="button"
+        class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        data-carousel-next>
+        <span
+          class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50  group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
+          <svg class="w-4 h-4 text-white  rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m1 9 4-4-4-4" />
+          </svg>
+          <span class="sr-only">Proximo</span>
+        </span>
+      </button>
+    </div>
+
+
+
+
+
+
+
+
+    <!--Cards de compra-->
+    <section id="cards_compra" class="text-gray-600 body-font overflow-hidden pt-32 uianimated">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-20">
+          <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-100">INGRESSOS</h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-200">Aqui, você pode explorar e adquirir
+            ingressos para uma ampla variedade de atividades, desde espetáculos <br> ao vivo e eventos esportivos até
+            workshops e atrações culturais.</p>
+        </div>
+
+        <div class="flex flex-wrap -m-4 uianimated">
+          <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+            <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+              <h2 class="text-sm tracking-widest title-font text-gray-200 mb-1 font-medium">BASIC</h2>
+              <h1 class="text-5xl text-teal-400 pb-4 mb-4 border-b border-gray-200 leading-none">$12,99</h1>
+              <p class="flex items-center text-g text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Acesso a palestras e workshops.
+              </p>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Materiais digitais pós-evento.
+              </p>
+              <p class="flex items-center text-gray-300 mb-6">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Certificado de participação digital.
+              </p>
+              <a href="{{url_for('register')}}"
+                class="flex items-center mt-auto text-white bg-teal-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-teal-600 rounded">COMPRAR
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <p class="text-xs text-gray-500 mt-3">Compra de ingresso sobre juridição brasileira e pagamentos pessoais.
+              </p>
+            </div>
+          </div>
+
+
+          <div class="p-4 xl:w-1/4 md:w-1/2 w-full ">
+            <div class="h-full p-6 rounded-lg border-2 border-teal-300 flex flex-col relative overflow-hidden">
+              <span
+                class="bg-teal-400 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">POPULAR</span>
+              <h2 class="text-sm tracking-widest title-font text-gray-200 mb-1 font-medium">PRO</h2>
+              <h1 class="text-5xl text-teal-400 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+                <span>$29,99</span>
+              </h1>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Benefícios do Plano Básico.
+              </p>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Assentos reservados e sessões de perguntas e respostas com os palestrantes.
+              </p>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Acesso a um painel de discussão adicional.
+              </p>
+              <p class="flex items-center text-gray-300 mb-6">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Consultoria personalizada pós-evento.
+              </p>
+              <a href="{{url_for('register')}}"
+                class="flex items-center mt-auto text-white bg-teal-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-teal-600 rounded">COMPRAR
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <p class="text-xs text-gray-500 mt-3">Compra de ingresso sobre juridição brasileira e pagamentos pessoais.
+              </p>
+            </div>
+          </div>
+
+
+          <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+            <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+              <h2 class="text-sm tracking-widest title-font text-gray-200 mb-1 font-medium">MASTER</h2>
+              <h1 class="text-5xl text-teal-400 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+                <span>$49,99</span>
+              </h1>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Benefícios do Plano Premium.
+              </p>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Acesso a uma recepção exclusiva com os palestrantes.
+              </p>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Webinar exclusivo pós-evento.
+              </p>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Participação em um grupo de discussão fechado para networking contínuo.
+              </p>
+              <a href="{{url_for('register')}}"
+                class="flex items-center mt-auto text-white bg-teal-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-teal-600 rounded">COMPRAR
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <p class="text-xs text-gray-500 mt-3">Compra de ingresso sobre juridição brasileira e pagamentos pessoais.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
+            <div class="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+              <h2 class="text-sm tracking-widest title-font text-gray-200 mb-1 font-medium">VIP</h2>
+              <h1 class="text-5xl text-teal-400 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+                <span>$100</span>
+              </h1>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Inclui todos os benefícios do Plano VIP.
+              </p>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Acesso garantido ao evento do próximo ano.
+              </p>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Participação em um grupo exclusivo de networking pré-evento.
+              </p>
+              <p class="flex items-center text-gray-300 mb-2">
+                <span
+                  class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-teal-500 text-white rounded-full flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>Acesso antecipado a materiais exclusivos de pré-evento e oportunidades de participação na seleção
+                de tópicos e palestrantes para o próximo evento.
+              </p>
+              <a href="{{url_for('register')}}"
+                class="flex items-center mt-auto text-white bg-teal-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-teal-600 rounded">COMPRAR
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <p class="text-xs text-gray-500 mt-3">Compra de ingresso sobre juridição brasileira e pagamentos pessoais.
+              </p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+
+
+    <div class="wrapper uianimated">
+      <main>
+        <section class="module parallax parallax-1">
+        </section>
+
+      </main>
+    </div>
+    <section class="bg-dark uianimated">
+      <div
+        class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+        <img class="w-full " src="../static/img/ilustrações/bone.png" alt="dashboard image">
+        <img class="w-full hidden "
+          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup-dark.svg"
+          alt="dashboard image">
+        <div class="mt-4 md:mt-0">
+          <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-white">GARANTA SEU BRINDE DA CODEXPO!</h1>
+          <p class="mb-6 font-light text-gray-200 md:text-lg ">Você encontrará uma seleção cuidadosamente escolhida de
+            brindes exclusivos e memoráveis que capturam a essência da nossa conferência. Nossos produtos são mais do
+            que simples lembranças; eles são uma celebração da comunidade Codexpo e uma maneira de levar um pedaço do
+            evento para casa.</p>
+          <a href="{{url_for('register')}}"
+            class="inline-flex items-center text-white bg-teal-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+            Acessar loja
+            <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!--contate-nos-->
+    <section id="cards_contate" class="text-white uianimated" id="sec-contato">
+      <div class="container px-5 py-24 mx-auto uianimated">
+        <div class="flex flex-col text-center w-full mb-12">
+          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-teal-400">Contate-nos</h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-gray-200 text-base">Se você tiver alguma pergunta, comentário,
+            sugestão ou precisa de suporte, esta é a sua porta de entrada. <br> Nossa equipe está aqui para ajudar e
+            garantir que sua experiência com nosso site seja a melhor possível. </p>
+        </div>
+        <div class="lg:w-1/2 md:w-2/3 mx-auto">
+          <div class="flex flex-wrap -m-2">
+            <div class="p-2 w-1/2">
+              <div class="relative">
+                <label for="name" class="leading-7 text-sm text-white">Nome</label>
+                <input type="text" id="name" name="name"
+                  class="w-full bg-gray-100 bg-gray-900 rounded border border-gray-300 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              </div>
+            </div>
+            <div class="p-2 w-1/2">
+              <div class="relative">
+                <label for="email" class="leading-7 text-sm text-white">Email</label>
+                <input type="email" id="email" name="email"
+                  class="w-full bg-gray-900 rounded border border-gray-300 focus:border-teal-400 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              </div>
+            </div>
+            <div class="p-2 w-full">
+              <div class="relative">
+                <label for="message" class="leading-7 text-sm text-white">Mensagem</label>
+                <textarea id="message" name="message"
+                  class="w-full bg-gray-900 rounded border border-gray-300 focus:border-teal-400 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+              </div>
+            </div>
+            <div class="p-2 w-full">
+              <button
+                class="flex mx-auto text-white bg-teal-400 border-0 py-2 px-8 focus:outline-none hover:bg-teal-600 rounded text-lg">Enviar</button>
+            </div>
+            <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
+              <span class="inline-flex">
+                <span class="inline-flex">
+                  <a class="text-gray-500 hover:text-gray-100 transition ease-in-out delay-150 ">
+                    <i class="uil uil-instagram text-2xl "></i>
+                  </a>
+                  <a class="ml-2 text-gray-500 hover:text-gray-100 transition ease-in-out delay-150  ">
+                    <i class="uil uil-envelope text-2xl "></i>
+                  </a>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="text-gray-600 body-font uianimated">
+      <div
+        class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+        <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <img src="../static/img/logo/Logo total.jpeg" alt="erro" width="200px">
+          </a>
+          <p class="mt-2 text-sm text-gray-500">© 2023 CODEXPO. Todos os direitos reservados. Rua franx.Souza Barretos,
+            São Paulo 17-471-715 | codexpo.supporte@gmail.com 17981213736</p>
+        </div>
+        <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
+          <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+            <h2 class="title-font font-medium text-gray-200 tracking-widest text-sm mb-3">CATEGORIAS</h2>
+            <nav class="list-none mb-10">
+              <li>
+                <a class="text-gray-200 hover:text-gray-800">HOME</a>
+              </li>
+              <li>
+                <a class="text-gray-200 hover:text-gray-800">SOBRE</a>
+              </li>
+              <li>
+                <a class="text-gray-200 hover:text-gray-800">PALESTRANTES</a>
+              </li>
+              <li>
+                <a class="text-gray-200 hover:text-gray-800">INGRESSOS</a>
+              </li>
+              <li>
+                <a class="text-gray-200 hover:text-gray-800">CONTATE-NOS</a>
+              </li>
+              <li>
+                <a class="text-gray-200 hover:text-gray-800">LOJA</a>
+              </li>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="transition.js"></script>
 </body>
