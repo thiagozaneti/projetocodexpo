@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Codexpo</title>
   <link rel="stylesheet" href="../static/css/style.css">
+  <script src="../static/js/script.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -26,7 +27,7 @@
     <span></span>
   </div>
 
-  <div class="w-full h-screen flex items-center justify-center">
+  <div class=" uianimated bottom w-full h-screen flex items-center justify-center">
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{url_for('register')}}" method="post">
       <div class="text-3xl">
         <h1>Registre-se</h1>
@@ -36,7 +37,7 @@
       </div>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-          Nome
+          Nome Completo
         </label>
         <input name="nome"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

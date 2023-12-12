@@ -1,7 +1,7 @@
 // JQUERY
-$('#card-number').mask("9999-9999-9999-9999");
-$('#card-number').mouseover(function(){$(this).attr('placeholder','9999-9999-9999-999')});
-$('#card-number').mouseout(function(){$(this).attr('placeholder','Numero do cartão')});
+$('#card-number').mask("9999");
+$('#card-number').mouseover(function(){$(this).attr('placeholder','9999')});
+$('#card-number').mouseout(function(){$(this).attr('placeholder','Ultimos 4 numeros')});
 
 
 $('#expiration-date').mask("9999")

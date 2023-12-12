@@ -3,8 +3,8 @@ from flask_admin.contrib.sqla import ModelView
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from flask_admin import Admin
+from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, current_user, UserMixin, login_required, logout_user
-from flask_mail import Mail, Message
 import random
 import string
 import time
@@ -16,33 +16,28 @@ app.static_url_path = 'static'
 app.static_folder = 'static'
 admin = Admin(app, name='Admin')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:5e5i#123@localhost/projeto'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:5e5i#123@localhost/projeto'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'ttttgg,x>a({&(5oqffx,`@>w[]pmifi|]#{6?q60ov#h~@wr>nyl,@,p{:g|;?u>0|ltttt'
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
-mail = Mail(app)
-
-app.config['MAIL_SERVER'] = 'smtp.example.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = 'th2006zadosa@gmail.com'
-app.config['MAIL_PASSWORD'] = 'ctmu mpig bemw caac'
-app.config['MAIL_DEFAULT_SENDER'] = 'th2006zadosa@gmail.com'
-
+bcrypt = Bcrypt(app)
 
 class User(db.Model, UserMixin): 
     __tablename__ = "inscricoes"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    def set_password(self, password):
+        self.password = bcrypt.generate_password_hash(password).decode('utf-8')
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.password, password)
     
     
 class Empregados(db.Model, UserMixin): 
-    __tablename__ = 'empregados'
+    __tablename__ = 'Empregados'
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50), nullable=False)
     selecao_empregados = db.Column(db.String(200), nullable=False)
@@ -63,40 +58,36 @@ class Admin(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), nullable=False)
     nome = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(50), nullable=False)  # Make sure this line is present
+    password = db.Column(db.String(255), nullable=False)  
     funcao = db.Column(db.String(50), nullable=False)
     senhaAdm = db.Column(db.String(50), nullable=False)
+    def set_password(self, password):
+        self.password = bcrypt.generate_password_hash(password).decode('utf-8')
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.password, password)
 
 admin.add_view(ModelView(User, db.session))
-
-
-
 
 class Buy(db.Model, UserMixin):
     __tablename__ = 'info_users_buy'
     id = db.Column(db.Integer, primary_key=True)
-    number_card = db.Column(db.String(200), nullable=False)
-    date_expires = db.Column(db.String(200), nullable=False)
-    cvv = db.Column(db.String(200), nullable=False)
+    number_card = db.Column(db.String(4), nullable=False)
+    date_expires = db.Column(db.String(4), nullable=False)
+    cvv = db.Column(db.String(3), nullable=False)
     name_of_propriety = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(200), nullable=False)
     selecao = db.Column(db.String(200), nullable=False)
     sequencia = db.Column(db.String(8), nullable=False)
 
 
-
-
-
 @login_manager.user_loader    #A função load_user é usada pelo Flask-Login para carregar um objeto de usuário com base no user_id armazenado na sessão do usuário. Isso permite que o Flask-Login mantenha o controle da sessão do usuário.
 def load_user(user_id):
     return User.query.get(int(user_id))
-
 
 ##visualização inicial do usuário
 @app.route('/')
 def index(): 
     return render_template('home.html')
-
 
 @app.route('/sair')
 def exit():
@@ -121,6 +112,7 @@ def register():
             return redirect('register')
         else:
             new_user = User(username=username, email=email, password=password)
+            new_user.set_password(password)
             db.session.add(new_user)
             db.session.commit()
             message = 'Cadastro feito com sucesso'
@@ -134,23 +126,24 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('senha')
-        user = User.query.filter_by(email=email, password=password).first()
-        admin_user = Admin.query.filter_by(email=email, password=password).first()  # Rename admin to admin_user
-        if len(password) < 4:
-            message = 'senha com poucos caracteres'
-        elif len(password) > 16:
-            message = 'senha ultrapassando caracteres'
-        elif user:
-            login_user(user)
-            return redirect(url_for('system'))
-        elif admin_user:
+        user = User.query.filter_by(email=email).first()
+        admin_user = Admin.query.filter_by(email=email).first()
+
+        if user and user.check_password(password):
+            if 4 <= len(password) <= 16:  # Verifica o comprimento da senha
+                login_user(user)
+                return redirect(url_for('system'))
+            else:
+                message = 'A senha deve ter entre 4 e 16 caracteres'
+        elif admin_user and admin_user.check_password(password):
             login_user(admin_user)
             return redirect(url_for('admin'))
-        elif admin_user == user:
-            return redirect('login')
         else:
-            message = "Usuário não encontrado, tente novamente"
+            message = "Usuário não encontrado ou senha incorreta, tente novamente"
+
     return render_template('login.html', message=message)
+
+
 
    
 ##rota do adm
@@ -198,7 +191,7 @@ def systemBuy():
         name_of_propriety = request.form.get('name_of_propriety')
         selecao = request.form.get('selecao')
         email = request.form.get('email')
-        if len(str(number_card)) != 16:
+        if len(str(number_card)) != 4:
             message = 'Numero de cartao errado'
         if len(date_expires) !=4:
             message = 'Numero de fim errado'
@@ -215,6 +208,7 @@ def systemBuy():
             db.session.add(new_buy)
             db.session.commit()
             time.sleep(5)
+            message = 'Compra realizada com sucesso! Você sõ pode comprar apenas um ingresso por seção'
             return redirect(url_for('systemBuy', nova_sequencia = nova_sequencia) )
     return render_template('system/systemBuy.html', message = message)
 
@@ -297,6 +291,7 @@ def addAdmin():
         if senhaAdm == passwordModel:
             adminAddBd = Admin(nome = nome, email = email, password = password, funcao = funcao, senhaAdm = senhaAdm)
             db.session.add(adminAddBd)
+            adminAddBd.set_password(password)
             db.session.commit()
             message = 'usuário adicionado com sucesso'
             return redirect(url_for('systemadms', nome=nome, email = email, password = password, funcao = funcao, senhaAdm = senhaAdm))

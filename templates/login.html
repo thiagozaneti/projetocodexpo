@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Codexpo</title>
   <link rel="stylesheet" href="../static/css/style.css">
+  <script src="../static/js/script.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -26,7 +27,7 @@
     <span></span>
   </div>
 
-  <div class="w-full h-screen flex items-center justify-center  ">
+  <div class=" uianimated bottom w-full h-screen flex items-center justify-center  ">
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="post">
       <div class="text-3xl">
         <h1>Login</h1>
@@ -51,6 +52,9 @@
           id="password" type="password" placeholder="******************">
         <p class="text-gray-800 text-xs italic">Escolha uma senha segura</p>
       </div>
+      <div class="mb-6" >
+        <p class=" text-black text-bold px-6 rounded "><i class=" text-green-600 uil uil-check-circle"></i>Sua senha é criptografada</p>
+      </div>
       <div class="flex items-center justify-between">
         <button
           class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -72,6 +76,7 @@
         <span class="font-medium">Alerta!</span> {{ message }}
       </div>
       {% endif %}
+      
     </form>
 </body>
 
